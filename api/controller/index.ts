@@ -13,9 +13,30 @@ const search = async (
     query: { s = "", sort = [], limit = 5 },
   } = req;
 
+  const filter:any = eval(sort as string);
   const resp: any = data;
 
   const pageNumberStyle = pageNumbers(limit as number);
+
+  if (filter.length) {
+    switch(filter[0].type){
+        case "name":
+            resp.sort((a:any, b:any): number | undefined => {
+                if(a.name.toLowerCase() < b.name.toLowerCase()) return -1 * filter[0].value
+                if(a.name.toLowerCase() > b.name.toLowerCase()) return 1 * filter[0].value
+            })
+            break;
+        case "dateLastEdited":
+            resp.sort((a:any, b:any): number | undefined => {
+                if(Date.parse(a.dateLastEdited) < Date.parse(b.dateLastEdited)) return -1 * filter[0].value
+                if(Date.parse(a.dateLastEdited) > Date.parse(b.dateLastEdited)) return 1 * filter[0].value
+            })
+            break;
+        default:
+            break;
+    }
+  }
+
   const pageArray: any = resp.slice(0, limit);
 
   return res.status(OK).json({

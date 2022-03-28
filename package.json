@@ -13,11 +13,11 @@
     "debug": "npx nodemon --exec \"node --inspect-brk=0.0.0.0:9229 --require ts-node/register ./index.ts\"",
     "type": "tsc --noEmit",
     "test": "mocha -r ts-node/register test/*.spec.ts --exit",
-    "lint": "eslint --ext .json --ext .js --fix --ignore-path .eslintignore ."
+    "lint-staged": "eslint --ignore-path .eslintignore --fix --color ."
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run type && lint-staged"
     }
   },
   "author": "Aravin d",
@@ -38,6 +38,7 @@
     "chai-http": "^4.3.0",
     "eslint": "^8.12.0",
     "eslint-plugin-json": "^3.1.0",
+    "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.4",
     "jest": "^27.5.1",

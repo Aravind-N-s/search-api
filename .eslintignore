@@ -1,3 +1,8 @@
 node_modules
 .github
 .vscode
+tsconfig.json
+nodemon.json
+.eslintignore
+.eslintrc.js
+package*.*

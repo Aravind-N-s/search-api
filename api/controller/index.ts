@@ -15,7 +15,7 @@ const search = async (
 		query: { s, sort, page },
 	} = req;
 
-	const searchQuery: string = (s as string) || "";
+	const searchQuery: string = eval(s as string) || "";
 	const filter: SortObject[] = eval(sort as any) || [];
 	const pageNumber: number = Number(page as string) || 1;
 

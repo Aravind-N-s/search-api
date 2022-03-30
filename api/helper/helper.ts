@@ -1,4 +1,7 @@
-export const pageNumbers = (num: number): number =>{
-    const resp =  num % 5;
-    return resp
-}
+export const pageNumbers = (
+	num: number,
+): { lowerLimit: number; upperLimit: number } => {
+	const lowerLimit = (num - 1) * 5;
+	const upperLimit = num * 5;
+	return { lowerLimit, upperLimit };
+};

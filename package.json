@@ -13,7 +13,7 @@
     "debug": "npx nodemon --exec \"node --inspect-brk=0.0.0.0:9229 --require ts-node/register ./index.ts\"",
     "type": "tsc --noEmit",
     "test": "mocha -r ts-node/register test/*.spec.ts --exit",
-    "lint": "eslint --ignore-path .eslintignore --fix --color ."
+    "lint": "eslint --fix --color --ignore-path .eslintignore . --ext .ts"
   },
   "husky": {
     "hooks": {
@@ -29,16 +29,19 @@
     "http-status-codes": "^2.2.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.17.0",
+    "@babel/eslint-plugin": "^7.17.7",
     "@types/chai": "^4.3.0",
     "@types/chai-http": "^4.2.0",
     "@types/express": "^4.17.13",
     "@types/mocha": "^9.1.0",
     "@types/node": "^17.0.23",
+    "@typescript-eslint/parser": "^5.17.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "eslint": "^8.12.0",
-    "eslint-plugin-json": "^3.1.0",
     "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.4",
     "jest": "^27.5.1",

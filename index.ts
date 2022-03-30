@@ -12,7 +12,7 @@ import router from "./utils/routes";
 app.use(router);
 
 app.listen(port, (): void => {
-  console.info("Listening on port", port);
+	console.info("Listening on port", port);
 });
 
 module.exports = app;

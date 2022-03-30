@@ -8,6 +8,7 @@ const prettierOptions = JSON.parse(
 module.exports = {
 	plugins: ["prettier"],
 	extends: ["plugin:prettier/recommended"],
+	parser: "@typescript-eslint/parser",
 	env: {
 		node: true,
 		es6: true,
@@ -18,7 +19,9 @@ module.exports = {
 		ecmaVersion: 8,
 		ecmaFeatures: {
 			experimentalObjectRestSpread: true,
+			jsx: true,
 		},
+		sourceType: "module",
 	},
 
 	globals: {
@@ -38,6 +41,5 @@ module.exports = {
 		"array-callback-return": 0,
 		"consistent-return": 0,
 		"no-underscore-dangle": 0,
-		"no-console": "error",
 	},
 };

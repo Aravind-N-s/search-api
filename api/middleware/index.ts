@@ -1,6 +1,8 @@
 import * as express from "express";
 import { SortObject } from "../helper/index";
 
+import unidecode from "unidecode";
+
 const { BAD_REQUEST } = require("http-status-codes");
 
 export const validateQuery = (
@@ -12,11 +14,16 @@ export const validateQuery = (
 		query: { s, sort, page },
 	} = req;
 
-	const searchQuery = eval(s as string);
+	const searchInput = s ? unidecode((s as string).trim()) : "";
+
 	const filter: SortObject[] = eval(sort as any) || [];
 	const pageNumber: number = Number(page as string);
 
-	if (searchQuery === "") {
+	const searchRegex = new RegExp(
+		searchInput.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&"),
+	);
+
+	if (searchRegex.toString() === `/""/`) {
 		return res.status(BAD_REQUEST).send({
 			payload: null,
 			message: `Search Query cannot be "", please add the data to search.`,

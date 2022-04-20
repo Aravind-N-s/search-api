@@ -2,6 +2,7 @@ require("dotenv").config;
 import * as express from "express";
 import data from "../helper/mock_data.json";
 import { pageNumbers } from "../helper/helper";
+import unidecode from "unidecode";
 import { MockData, SortObject } from "../helper/index";
 const { OK } = require("http-status-codes");
 
@@ -15,7 +16,7 @@ const search = async (
 		query: { s, sort, page },
 	} = req;
 
-	const searchQuery: string = eval(s as string) || "";
+	const searchQuery: string = s ? unidecode((s as string).trim()) : "";
 	const filter: SortObject[] = eval(sort as any) || [];
 	const pageNumber: number = Number(page as string) || 1;
 
